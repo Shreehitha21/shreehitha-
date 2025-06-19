@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #eee;
+      padding: 40px 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .dashboard {
+      display: flex;
+      background: #f7f3f1;
+      border-radius: 8px;
+      padding: 24px;
+      gap: 40px;
+      max-width: 1200px;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      flex-wrap: wrap;
+    }
+
+    .card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 280px;
+    }
+
+    .card h4 {
+      margin: 0;
+      color: #5a5a5a;
+      font-weight: normal;
+      font-size: 14px;
+    }
+
+    .card h2 {
+      font-size: 32px;
+      margin: 10px 0 4px;
+      color: #2b2b2b;
+    }
+
+    .unit {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 10px;
+    }
+
+    .change {
+      font-size: 12px;
+      color: #b14f4f;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .change.up::before {
+      content: "↑";
+      font-size: 12px;
+    }
+
+    .change.down::before {
+      content: "↓";
+      font-size: 12px;
+    }
+
+    .year-bars {
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .year-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      gap: 10px;
+    }
+
+    .bar-container {
+      background: #ddd;
+      height: 6px;
+      border-radius: 3px;
+      flex-grow: 1;
+    }
+
+    .bar-fill {
+      background: #844e4e;
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .action {
+      margin-top: auto;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      color: #333;
+    }
+
+    .action svg {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid #333;
+      border-radius: 50%;
+      padding: 3px;
+      fill: none;
+    }
+
+    .action path {
+      stroke: #333;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Card 1 -->
+    <div class="card">
+      <h4>Managed portfolio carbon footprint</h4>
+      <h2>45,048</h2>
+      <div class="unit">tCO₂e</div>
+      <div class="change up">from 2019 16%</div>
+      <div class="year-bars">
+        <div class="year-row">
+          2022 45,048
+          <div class="bar-container"><div class="bar-fill" style="width: 100%;"></div></div>
+        </div>
+        <div class="year-row">
+          2021 14,111
+          <div class="bar-container"><div class="bar-fill" style="width: 31%;"></div></div>
+        </div>
+        <div class="year-row">
+          2020 32,813
+          <div class="bar-container"><div class="bar-fill" style="width: 72%;"></div></div>
+        </div>
+        <div class="year-row">
+          2019 38,673
+          <div class="bar-container"><div class="bar-fill" style="width: 85%;"></div></div>
+        </div>
+      </div>
+      <div class="action">
+        <span>See full breakdown of carbon footprint</span>
+        <!-- Right arrow in circle -->
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6l6 6-6 6"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <h4>Managed portfolio energy intensity</h4>
+      <h2>123</h2>
+      <div class="unit">kWh/m²</div>
+      <div class="change down">from 2019 22%</div>
+      <div class="year-bars">
+        <div class="year-row">
+          2022 123
+          <div class="bar-container"><div class="bar-fill" style="width: 78%;"></div></div>
+        </div>
+        <div class="year-row">
+          2021 128
+          <div class="bar-container"><div class="bar-fill" style="width: 81%;"></div></div>
+        </div>
+        <div class="year-row">
+          2020 135
+          <div class="bar-container"><div class="bar-fill" style="width: 85%;"></div></div>
+        </div>
+        <div class="year-row">
+          2019 157
+          <div class="bar-container"><div class="bar-fill" style="width: 100%;"></div></div>
+        </div>
+      </div>
+      <div class="action">
+        <span>Download the data</span>
+        <!-- Down arrow in circle -->
+        <svg viewBox="0 0 24 24">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <h4>Managed portfolio energy consumption</h4>
+      <h2>47,790,662</h2>
+      <div class="unit">kWh</div>
+      <div class="change down">from 2019 27%</div>
+      <div class="year-bars">
+        <div class="year-row">
+          2022 47,790,662
+          <div class="bar-container"><div class="bar-fill" style="width: 73%;"></div></div>
+        </div>
+        <div class="year-row">
+          2021 49,324,077
+          <div class="bar-container"><div class="bar-fill" style="width: 75%;"></div></div>
+        </div>
+        <div class="year-row">
+          2020 48,784,205
+          <div class="bar-container"><div class="bar-fill" style="width: 74%;"></div></div>
+        </div>
+        <div class="year-row">
+          2019 65,198,706
+          <div class="bar-container"><div class="bar-fill" style="width: 100%;"></div></div>
+        </div>
+      </div>
+      <div class="action">
+        <span>Download the data</span>
+        <!-- Down arrow in circle -->
+        <svg viewBox="0 0 24 24">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
