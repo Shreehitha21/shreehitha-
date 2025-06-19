@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parallax Animation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .parallax-section {
+      height: 100vh;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 3em;
+      text-shadow: 0 0 5px black;
+    }
+
+    .section1 {
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80');
+    }
+
+    .section2 {
+      background: #111;
+      color: #00c6ff;
+      font-size: 2em;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .section3 {
+      background-image: url('https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=1470&q=80');
+    }
+
+    .section4 {
+      background: #222;
+      color: white;
+      font-size: 2em;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .section5 {
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1470&q=80');
+    }
+  </style>
+</head>
+<body>
+
+  <div class="parallax-section section1">
+    Welcome
+  </div>
+
+  <div class="section2">
+    This is a modern parallax scrolling website.
+  </div>
+
+  <div class="parallax-section section3">
+    Scroll Down
+  </div>
+
+  <div class="section4">
+    You can place content, buttons, or animated icons here.
+  </div>
+
+  <div class="parallax-section section5">
+    Thank You!
+  </div>
+
+</body>
+</html>
