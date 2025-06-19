@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brand Kits</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .brand-kit-container {
+      background: #1e1e1e;
+      border-radius: 16px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(128, 0, 255, 0.5);
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+    }
+
+    .brand-kit-container::before {
+      content: "";
+      position: absolute;
+      top: -2px; left: -2px;
+      right: -2px; bottom: -2px;
+      background: linear-gradient(90deg, #ff00cc, #3333ff);
+      z-index: -1;
+      border-radius: 18px;
+    }
+
+    .title {
+      color: white;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .kit {
+      background: #2a2a2a;
+      margin: 10px 0;
+      padding: 10px 14px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+
+    .kit label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      accent-color: #6a0dad;
+      width: 16px;
+      height: 16px;
+    }
+
+    .logo {
+      width: 30px;
+      height: 20px;
+      border-radius: 999px;
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .logo::before, .logo::after {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .ecorp::before { background-color: #00c292; }
+    .ecorp::after { background-color: #ffffff; }
+
+    .icorp::before { background-color: #f39c12; }
+    .icorp::after { background-color: #ffffff; }
+
+    .agency::before { background-color: #e74c3c; }
+    .agency::after { background-color: #ffffff; }
+
+    .settings {
+      font-size: 16px;
+      color: #aaa;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="brand-kit-container">
+    <h2 class="title">Brand Kits</h2>
+
+    <div class="kit">
+      <input type="checkbox" id="ecorp" />
+      <label for="ecorp">
+        <span class="logo ecorp"></span>
+        ECorp
+      </label>
+      <span class="settings">&#9881;</span>
+    </div>
+
+    <div class="kit">
+      <input type="checkbox" id="icorp" />
+      <label for="icorp">
+        <span class="logo icorp"></span>
+        ICorp
+      </label>
+      <span class="settings">&#9881;</span>
+    </div>
+
+    <div class="kit">
+      <input type="checkbox" id="agency" checked />
+      <label for="agency">
+        <span class="logo agency"></span>
+        The Agency
+      </label>
+      <span class="settings">&#9881;</span>
+    </div>
+  </div>
+</body>
+</html>
