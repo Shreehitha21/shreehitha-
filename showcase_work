@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Showcase Website</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      color: #333;
+      overflow-x: hidden;
+    }
+    .section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 20px;
+      transition: opacity 1s ease, transform 1s ease;
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a, #444);
+      color: white;
+      flex-direction: column;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .btn {
+      padding: 10px 25px;
+      background: #ff6347;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #e5533d;
+    }
+    .portfolio {
+      background: #f9f9f9;
+      flex-direction: column;
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+      width: 100%;
+      max-width: 1000px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .popup.hidden {
+      display: none;
+    }
+    .popup-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      position: relative;
+      animation: fadeIn 0.5s ease;
+    }
+    .popup-content h2 {
+      margin-bottom: 10px;
+    }
+    .popup-content p {
+      font-size: 1rem;
+      color: #444;
+    }
+    .popup .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="section hero">
+    <h1>My Showcase Portfolio</h1>
+    <p>Creative. Clean. Animated.</p>
+    <button class="btn" id="openPopup">Learn More</button>
+  </section>
+
+  <section class="section portfolio">
+    <h2>Featured Projects</h2>
+    <div class="grid">
+      <div class="card" data-project="Project 1">Project 1</div>
+      <div class="card" data-project="Project 2">Project 2</div>
+      <div class="card" data-project="Project 3">Project 3</div>
+    </div>
+  </section>
+
+  <section class="section" style="background:#eee;">
+    <h2>More Coming Soon...</h2>
+  </section>
+
+  <!-- Popup -->
+  <div class="popup hidden" id="popup">
+    <div class="popup-content">
+      <span class="close" id="closePopup">&times;</span>
+      <h2 id="popupTitle">Popup Title</h2>
+      <p>This is a detailed view of the project. You can put descriptions, images, or links here.</p>
+    </div>
+  </div>
+
+  <script>
+    // Scroll animation
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
+
+    // Popup logic
+    const popup = document.getElementById('popup');
+    const popupTitle = document.getElementById('popupTitle');
+    const closePopup = document.getElementById('closePopup');
+
+    document.getElementById('openPopup').addEventListener('click', () => {
+      popupTitle.textContent = "About This Portfolio";
+      popup.classList.remove('hidden');
+    });
+
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        popupTitle.textContent = card.dataset.project;
+        popup.classList.remove('hidden');
+      });
+    });
+
+    closePopup.addEventListener('click', () => popup.classList.add('hidden'));
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) popup.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
