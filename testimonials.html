@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Testimonials</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+      color: #333;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #222;
+    }
+
+    .testimonials-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 30px;
+      padding: 40px 20px;
+      scrollbar-width: none;
+    }
+
+    .testimonials-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .testimonial-card {
+      scroll-snap-align: center;
+      background: rgba(255,255,255,0.85);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      flex: 0 0 300px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    }
+
+    .testimonial-card img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+
+    .testimonial-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* Popup Modal */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .popup.hidden {
+      display: none;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 2rem;
+      max-width: 500px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      text-align: center;
+      position: relative;
+    }
+
+    .popup-content h2 {
+      margin-bottom: 10px;
+    }
+
+    .popup-content p {
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .testimonial-card {
+        flex: 0 0 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>What Our Clients Say</h1>
+  </header>
+
+  <section class="testimonials-container">
+    <div class="testimonial-card" data-name="Alice Johnson" data-message="Absolutely loved the service. 10/10 would recommend!">
+      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Alice">
+      <h3>Alice Johnson</h3>
+      <p>“Loved the service! Highly recommend.”</p>
+    </div>
+
+    <div class="testimonial-card" data-name="Mark Peterson" data-message="This team exceeded my expectations and delivered ahead of schedule. Fantastic!">
+      <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Mark">
+      <h3>Mark Peterson</h3>
+      <p>“Exceeded expectations.”</p>
+    </div>
+
+    <div class="testimonial-card" data-name="Sara Lee" data-message="Incredible work ethic and quality. I felt valued throughout the project.">
+      <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sara">
+      <h3>Sara Lee</h3>
+      <p>“Top-tier quality & communication.”</p>
+    </div>
+
+    <div class="testimonial-card" data-name="Dylan Cruz" data-message="Reliable, skilled, and always on point. I’ve already referred two friends.">
+      <img src="https://randomuser.me/api/portraits/men/21.jpg" alt="Dylan">
+      <h3>Dylan Cruz</h3>
+      <p>“Already referred friends!”</p>
+    </div>
+  </section>
+
+  <!-- Popup -->
+  <div class="popup hidden" id="popup">
+    <div class="popup-content">
+      <span class="close" id="closePopup">&times;</span>
+      <h2 id="popupName"></h2>
+      <p id="popupMessage"></p>
+    </div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.testimonial-card');
+    const popup = document.getElementById('popup');
+    const popupName = document.getElementById('popupName');
+    const popupMessage = document.getElementById('popupMessage');
+    const closePopup = document.getElementById('closePopup');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        popupName.textContent = card.getAttribute('data-name');
+        popupMessage.textContent = card.getAttribute('data-message');
+        popup.classList.remove('hidden');
+      });
+    });
+
+    closePopup.addEventListener('click', () => popup.classList.add('hidden'));
+    popup.addEventListener('click', e => {
+      if (e.target === popup) popup.classList.add('hidden');
+    });
+  </script>
+
+</body>
+</html>
