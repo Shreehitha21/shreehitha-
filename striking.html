@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Striking Simplicity</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* 🔷 Hero Section with Animated Gradient */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      background: linear-gradient(270deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 600% 600%;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* 🌀 Striking Object */
+    .object-container {
+      position: relative;
+      margin-top: 40px;
+    }
+    .object {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at 30% 30%, #fff, #ff6347);
+      border-radius: 50%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      transition: transform 0.6s ease;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+    .object:hover {
+      transform: rotateY(20deg) rotateX(10deg) scale(1.05);
+    }
+
+    /* 🧲 Magnetic Effect */
+    .object-container:hover .object {
+      transform: scale(1.05);
+    }
+
+    /* 📜 Parallax Sections */
+    .section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      position: relative;
+      transition: all 0.8s ease;
+      opacity: 0;
+      transform: translateY(80px);
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section:nth-child(even) {
+      background: #f5f5f5;
+      color: #333;
+    }
+    .section:nth-child(odd) {
+      background: #e0e0e0;
+      color: #111;
+    }
+
+    /* 💬 Popup (Glassmorphism) */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    .popup.hidden {
+      display: none;
+    }
+    .popup-content {
+      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 2rem;
+      color: #fff;
+      max-width: 400px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.2);
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .popup-content h2 {
+      margin-bottom: 10px;
+    }
+    .popup-content p {
+      font-size: 1rem;
+      color: #eee;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .object {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <h1>Striking Simplicity</h1>
+    <p>Click the object below</p>
+    <div class="object-container">
+      <div class="object" id="object"></div>
+    </div>
+  </section>
+
+  <section class="section">Elegant Movement</section>
+  <section class="section">Scroll-Based Discovery</section>
+  <section class="section">Minimal but Impactful</section>
+
+  <!-- 💬 Popup Modal -->
+  <div class="popup hidden" id="popup">
+    <div class="popup-content">
+      <span class="close" id="closePopup">&times;</span>
+      <h2>The Object Speaks</h2>
+      <p>This simple shape is more than design — it’s a symbol of balance, energy, and interaction.</p>
+    </div>
+  </div>
+
+  <script>
+    // 🎯 Intersection Observer for reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
+
+    // 💬 Popup logic
+    const popup = document.getElementById('popup');
+    const object = document.getElementById('object');
+    const closePopup = document.getElementById('closePopup');
+
+    object.addEventListener('click', () => popup.classList.remove('hidden'));
+    closePopup.addEventListener('click', () => popup.classList.add('hidden'));
+    popup.addEventListener('click', e => {
+      if (e.target === popup) popup.classList.add('hidden');
+    });
+  </script>
+
+</body>
+</html>
