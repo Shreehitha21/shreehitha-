@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Embodied Carbon Emissions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #eee;
+      display: flex;
+      justify-content: center;
+      padding: 40px 10px;
+    }
+
+    .container {
+      background: #fdfaf9;
+      border-radius: 10px;
+      padding: 24px;
+      max-width: 900px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      width: 100%;
+    }
+
+    .filter-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-group label {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid #844e4e;
+      background: #fff;
+      color: #844e4e;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .btn.active {
+      background: #844e4e;
+      color: white;
+    }
+
+    .heading {
+      text-align: right;
+      margin-top: -60px;
+      margin-bottom: 20px;
+    }
+
+    .heading h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #722f2f;
+      font-weight: 500;
+    }
+
+    .heading small {
+      color: #666;
+      font-size: 12px;
+    }
+
+    .download {
+      font-size: 12px;
+      color: #333;
+      text-align: right;
+      margin-top: 6px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .download-icon {
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+      border: 1.5px solid #444;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+    }
+
+    .download-icon svg {
+      width: 12px;
+      height: 12px;
+      fill: #444;
+    }
+
+    .chart-area {
+      margin-top: 20px;
+    }
+
+    .key {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 200px;
+      border-left: 2px solid #aaa;
+      border-bottom: 2px solid #aaa;
+      padding-left: 10px;
+      padding-bottom: 10px;
+    }
+
+    .bar {
+      width: 20px;
+      background: #844e4e;
+      position: relative;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .bar::after {
+      content: attr(data-value);
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="filter-section">
+      <div class="filter-group">
+        <label>Type</label>
+        <button class="btn">Refurbishment</button>
+        <button class="btn">New build</button>
+        <button class="btn active">All</button>
+      </div>
+      <div class="filter-group">
+        <label>Status</label>
+        <button class="btn active">Complete</button>
+        <button class="btn">Estimate</button>
+      </div>
+    </div>
+
+    <div class="heading">
+      <h1>EMBODIED<br>CARBON EMISSIONS</h1>
+      <small>Intensity measured by kgCO₂e/m²</small>
+      <div class="download">
+        <span>Download the data</span>
+        <div class="download-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M5 20h14v-2H5v2zm7-18v10l4-4h-3V2h-2v6H9l4 4V2z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-area">
+      <div class="key">
+        --- 500 kgCO₂e/m² – Embodied Carbon Target 2030<br>
+        --- 600 kgCO₂e/m² – Embodied Carbon Target 2025
+      </div>
+      <div class="bar-chart">
+        <div class="bar" data-value="548" style="height: 110px;"></div>
+        <div class="bar" data-value="278" style="height: 56px;"></div>
+        <div class="bar" data-value="857" style="height: 172px;"></div>
+        <div class="bar" data-value="697" style="height: 140px;"></div>
+        <div class="bar" data-value="500" style="height: 100px;"></div>
+        <div class="bar" data-value="36"  style="height: 7px;"></div>
+        <div class="bar" data-value="185" style="height: 37px;"></div>
+        <div class="bar" data-value="96"  style="height: 19px;"></div>
+        <div class="bar" data-value="122" style="height: 24px;"></div>
+        <div class="bar" data-value="1027" style="height: 200px;"></div>
+        <div class="bar" data-value="523" style="height: 104px;"></div>
+        <div class="bar" data-value="269" style="height: 54px;"></div>
+        <div class="bar" data-value="29"  style="height: 6px;"></div>
+        <div class="bar" data-value="82"  style="height: 16px;"></div>
+        <div class="bar" data-value="44"  style="height: 9px;"></div>
+        <div class="bar" data-value="100" style="height: 20px;"></div>
+        <div class="bar" data-value="106" style="height: 21px;"></div>
+        <div class="bar" data-value="607" style="height: 121px;"></div>
+        <div class="bar" data-value="623" style="height: 124px;"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
